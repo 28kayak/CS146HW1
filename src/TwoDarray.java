@@ -19,6 +19,9 @@ public class TwoDarray
 		//System.out.println("hello");
 		String inputFileName = "/Users/kaya/Documents/CSAssignments/CS146HW1/src/input.txt";//name of input file
 		File inputFile = new File(inputFileName);
+		String contained;
+		int rowIndex = 0;
+		int columnIndex;
 		char[][] puzzle = new char[4][4];//[row][column]
 		try
 		{
@@ -27,18 +30,15 @@ public class TwoDarray
 			InputStreamReader isr = new InputStreamReader(fis);
 			BufferedReader br = new BufferedReader(isr);
 			
-			
 			//read data from text-file 
-			String contained;
 			String line;
 			contained = br.readLine();
 			//since my input file stores contained word at the 1st line,
 			//read it different from the board info
 			System.out.println("1st line: " + contained);
 			char[] rowChars;
-			int rowIndex = 0;
-			int columnIndex;
 			
+			rowIndex = 0;//initialize rowIndex to be 0
 			// read rest of rows
 			while((line = br.readLine())!= null)
 			{//output the data on a terminal
@@ -59,13 +59,12 @@ public class TwoDarray
 			}
 			//close the file
 			br.close();
-			
-		
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
+		
 	}//main
 
 }//TwoDarray
