@@ -1,0 +1,9 @@
+
+public class SearchingPuzzleBoard
+{
+	SearchingPuzzleBoard()
+	{
+		
+	}
+
+}
