@@ -106,8 +106,8 @@ public class TwoDarray
 											candidate1 += String.valueOf(puzzle[index][j]);
 										}
 									}//for-index
-									candidate1 = String.valueOf(puzzle[t][j]) + String.valueOf(puzzle[t-1][j]) 
-											+ String.valueOf(puzzle[t-2][j]) + String.valueOf(puzzle[t-3][j]);
+									//candidate1 = String.valueOf(puzzle[t][j]) + String.valueOf(puzzle[t-1][j]) 
+											//+ String.valueOf(puzzle[t-2][j]) + String.valueOf(puzzle[t-3][j]);
 								}
 								
 								
