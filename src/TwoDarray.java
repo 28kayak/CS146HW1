@@ -33,33 +33,41 @@ public class TwoDarray
 			
 			//read data from text-file 
 			String line;
-			contained = br.readLine();
-			//since my input file stores contained word at the 1st line,
-			//read it different from the board info
-			System.out.println("1st line: " + contained);
-			char[] rowChars;
+			line = br.readLine();//read the first row
+			char[] rowChars = line.toCharArray();//convert to char array
+			lengthPuzzle = rowChars.length;
+			puzzle = new char[lengthPuzzle][lengthPuzzle];
+			for(int index = 0; index < lengthPuzzle; index++)
+			{
+				puzzle[0][index] = rowChars[index];
+				System.out.printf("puzzle[0][%d] = " + puzzle[0][index] + "\n",index);
+			}//insert elements in the first row into the puzzle board
+			/*
+			 * Note: to initialize puzzle, need to figure out the length of row and columns before getting in loop
+			 */
 			
-			row = 0;//initialize rowIndex to be 0
+			row = 1;//initialize rowIndex to be 1
 			// read rest of rows
 			while((line = br.readLine())!= null)
 			{//output the data on a terminal
-				System.out.println(line);
-				rowChars = line.toCharArray();
-			    lengthPuzzle = rowChars.length;
-			    puzzle = new char[lengthPuzzle][lengthPuzzle];
-				for(column = 0; column < rowChars.length;column++)
-				{//walk thought column one by one
-					
-					System.out.println("columnIndex = " + rowChars[column]);
-					//insert rowChars[columnIndex] into puzzle[rowIndex][columnIndex]
-					puzzle[row][column] = rowChars[column];
-					System.out.printf("puzzle[%d][%d] = " + puzzle[row][column]+ "\n", row,column);
-							
+				if(System.getProperty("line.separator").equals(line))
+				{
+					line=br.readLine();//read one more line to exclude 
+					contained = line;
+					System.out.println("contained = " + contained);
 				}
+				else
+				{
+					System.out.println("row = "+ row);
+					rowChars = line.toCharArray();//another line converted to char Array
+					for(int col = 0; col < lengthPuzzle; col++)
+					{
+						puzzle[row][col] = rowChars[col];//insert chars to puzzle column by column
+					}
+				}
+				//System.out.println(line);
 				row++;//move to the next row
-				System.out.println("rowIndex = " + row );
-				System.out.println("columnIndex = " + column);
-			}
+			}//while- there exist line in input.txt
 			//close the file
 			br.close();
 			
@@ -77,6 +85,7 @@ public class TwoDarray
 			int kyloc = 0;
 			String candidate1 = "";
 			String[] candicates = new String[4];
+			String result = "";
 			while(kyloc < keyWord.length)
 			{
 				char fl = keyWord[kyloc].charAt(0); //get the first letter of keyword
@@ -84,34 +93,31 @@ public class TwoDarray
 				{
 					for(int j = 0; j < lengthPuzzle; j++)
 					{
+						int t = 0;//where t points to the next char
 						if(fl == puzzle[i][j])
-						{
+						{//First Letter matched up!
 							for(int k = 0; k < keyWord[kyloc].length(); k++)
-							{
-								int t = i;
-								if((t < 0) || (t > keyWord.length))
+							{//walk from left to right
+								t = i+k;
+								if(t < 0 || t > keyWord.length)
 								{
 									candidate1 += " ";
 								}
 								else
 								{
-									for(int index = 0; index < keyWord[kyloc].length();index++)
-									{
-										if(index < 0)
-										{
-											candidate1 += " ";
-										}
-										else
-										{
-											candidate1 += String.valueOf(puzzle[index][j]);
-										}
-									}//for-index
-									//candidate1 = String.valueOf(puzzle[t][j]) + String.valueOf(puzzle[t-1][j]) 
-											//+ String.valueOf(puzzle[t-2][j]) + String.valueOf(puzzle[t-3][j]);
-								}
-								
-								
+									candidate1 += String.valueOf(puzzle[t][j]);
+									
+								}	
 							}//for-k
+							if(keyWord[kyloc].equalsIgnoreCase(candidate1))
+							{
+								result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
+										+"end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
+							}
+							else
+							{
+								
+							}
 						}//if
 					}//for-j
 				}// for-i
