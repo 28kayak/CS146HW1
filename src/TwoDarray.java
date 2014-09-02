@@ -21,6 +21,7 @@ public class TwoDarray
 		File inputFile = new File(inputFileName);
 		String contained ="";
 		int row = 0;
+		int col = 0;
 		int column = 0;
 		char[][] puzzle; //= new char[4][4];//[row][column]
 		int lengthPuzzle = 0;
@@ -50,19 +51,22 @@ public class TwoDarray
 			// read rest of rows
 			while((line = br.readLine())!= null)
 			{//output the data on a terminal
-				if(System.getProperty("line.separator").equals(line))
+				if(line.equals(""))
 				{
-					line=br.readLine();//read one more line to exclude 
+					line=br.readLine();//read one more line to exclude the empty line
 					contained = line;
 					System.out.println("contained = " + contained);
+					col++;
 				}
 				else
 				{
 					System.out.println("row = "+ row);
 					rowChars = line.toCharArray();//another line converted to char Array
-					for(int col = 0; col < lengthPuzzle; col++)
+					for(col = 0; col < lengthPuzzle; col++)
 					{
+						System.out.println("col = " + col);
 						puzzle[row][col] = rowChars[col];//insert chars to puzzle column by column
+						
 					}
 				}
 				//System.out.println(line);
@@ -106,8 +110,8 @@ public class TwoDarray
 								else
 								{
 									candidate1 += String.valueOf(puzzle[t][j]);
-									
 								}	
+								System.out.println(candidate1);
 							}//for-k
 							if(keyWord[kyloc].equalsIgnoreCase(candidate1))
 							{
@@ -116,12 +120,13 @@ public class TwoDarray
 							}
 							else
 							{
-								
-							}
+								result = " Not Found ";
+							}//if
+							System.out.println("reslut =  " + result);
 						}//if
 					}//for-j
 				}// for-i
-				kyloc++;
+				kyloc++;//go check for another keyword
 			}//while
 		}//try
 		catch(Exception ex)
