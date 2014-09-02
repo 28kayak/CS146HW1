@@ -34,7 +34,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j-k;
-							if(t < 0 || t > lengthPuzzle)
+							if(t < 0 || (t > lengthPuzzle))
 							{
 								
 								candidate1 += " ";
@@ -86,7 +86,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j+k;
-							if(t < 0 || t > lengthPuzzle)
+							if(t < 0 || (t > lengthPuzzle))
 							{
 								candidate1 += " ";
 							}
@@ -137,7 +137,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = i+k;
-							if(t < 0 || t > lengthPuzzle)
+							if(t < 0 || (t > lengthPuzzle))
 							{
 								
 								candidate1 += " ";
@@ -192,7 +192,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = i-k;
-							if(t < 0 || t > lengthPuzzle)
+							if(t < 0 || (t > lengthPuzzle))
 							{
 								
 								candidate1 += " ";
