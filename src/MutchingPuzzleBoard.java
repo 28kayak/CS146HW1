@@ -2,24 +2,26 @@
 public class MutchingPuzzleBoard
 {
 	private char[][] puzzle;//hold puzzle board 
-	private String[] keyWord;
+	private String[] keyWords;
 	int lengthPuzzle;
+	int numKey;
 	MutchingPuzzleBoard(char[][] pBoard, String[] kyList, int plength)
 	{
 		puzzle = pBoard;
-		keyWord= kyList; 
+		keyWords= kyList; 
 		lengthPuzzle = plength;
+		numKey = keyWords.length;
 	}
 	public void mutchingRtoL()
 	{
 		int kyloc = 0;
 		String candidate1;
-		String[] candicates = new String[4];
+		String[] candicates = new String[numKey];
 		String result = "";
 		int kylength;
-		while(kyloc < keyWord.length)
+		while(kyloc < keyWords.length)
 		{
-			String currentKey = keyWord[kyloc];
+			String currentKey = keyWords[kyloc];
 			char fl = currentKey.charAt(0); //get the first letter of keyword
 			
 			for(int i = 0; i < lengthPuzzle; i++)
@@ -34,7 +36,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j-k;
-							if(t < 0 || t > keyWord.length)
+							if(t < 0 || t >= keyWords.length)
 							{
 								
 								candidate1 += " ";
@@ -45,7 +47,7 @@ public class MutchingPuzzleBoard
 								
 							}	
 						}//for-k
-						if(keyWord[kyloc].equalsIgnoreCase(candidate1))
+						if(keyWords[kyloc].equalsIgnoreCase(candidate1))
 						{
 							result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
 									+" end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
@@ -66,12 +68,12 @@ public class MutchingPuzzleBoard
 	{
 		int kyloc = 0;
 		String candidate1;
-		String[] candicates = new String[4];
+		String[] candicates = new String[numKey];
 		String result = "";
 		int kylength;
-		while(kyloc < keyWord.length)
+		while(kyloc < keyWords.length)
 		{
-			String currentKey = keyWord[kyloc];
+			String currentKey = keyWords[kyloc];
 			char fl = currentKey.charAt(0); //get the first letter of keyword
 			
 			for(int i = 0; i < lengthPuzzle; i++)
@@ -86,7 +88,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j+k;
-							if(t < 0 || t > keyWord.length)
+							if(t < 0 || t >= keyWords.length)
 							{
 								candidate1 += " ";
 							}
@@ -95,7 +97,7 @@ public class MutchingPuzzleBoard
 								candidate1 += String.valueOf(puzzle[i][t]);
 							}	
 						}//for-k
-						if(keyWord[kyloc].equalsIgnoreCase(candidate1))
+						if(keyWords[kyloc].equalsIgnoreCase(candidate1))
 						{
 							result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
 									+" end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
@@ -117,12 +119,12 @@ public class MutchingPuzzleBoard
 	{
 		int kyloc = 0;
 		String candidate1;
-		String[] candicates = new String[4];
+		String[] candicates = new String[numKey];
 		String result = "";
 		int kylength;
-		while(kyloc < keyWord.length)
+		while(kyloc < keyWords.length)
 		{
-			String currentKey = keyWord[kyloc];
+			String currentKey = keyWords[kyloc];
 			char fl = currentKey.charAt(0); //get the first letter of keyword
 			
 			for(int i = 0; i < lengthPuzzle; i++)
@@ -137,20 +139,24 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = i+k;
-							if(t < 0 || t > keyWord.length)
-							{
+							if(t < 0 || t >= lengthPuzzle)
+							{	
+								System.out.println("--------in if-statement----------");
 								
 								candidate1 += " ";
+								System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
+								
 							}
 							else
 							{
-								//System.out.println("t = " + t);
-								//System.out.println("j = " + j);
+								System.out.println("--------in else-statement----------");
+								System.out.println(candidate1);
+								System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
 								candidate1 += String.valueOf(puzzle[t][j]);
 								
 							}	
 						}//for-k
-						if(keyWord[kyloc].equalsIgnoreCase(candidate1))
+						if(keyWords[kyloc].equalsIgnoreCase(candidate1))
 						{
 							result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
 									+" end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
@@ -172,12 +178,12 @@ public class MutchingPuzzleBoard
 	{
 		int kyloc = 0;
 		String candidate1;//Temporally store char which is cast to string
-		String[] candicates = new String[4];//store String around puzzle[i][j]
+		String[] candicates = new String[numKey];//store String around puzzle[i][j]
 		String result = "";//store the final result
 		int kylength;
-		while(kyloc < keyWord.length)
+		while(kyloc < keyWords.length)
 		{
-			String currentKey = keyWord[kyloc];
+			String currentKey = keyWords[kyloc];
 			char fl = currentKey.charAt(0); //get the first letter of keyword
 			
 			for(int i = 0; i < lengthPuzzle; i++)
@@ -192,7 +198,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = i-k;
-							if(t < 0 || t > keyWord.length)
+							if(t < 0 || t > keyWords.length)
 							{
 								
 								candidate1 += " ";
@@ -203,7 +209,7 @@ public class MutchingPuzzleBoard
 								
 							}	
 						}//for-k
-						if(keyWord[kyloc].equalsIgnoreCase(candidate1))
+						if(keyWords[kyloc].equalsIgnoreCase(candidate1))
 						{
 							result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
 									+" end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
@@ -220,6 +226,20 @@ public class MutchingPuzzleBoard
 		}//while
 		
 	}//muchingDtoT()
+	public void printPuzzle()
+	{
+		int col;
+		int row = 0;
+		while(row < lengthPuzzle)
+		{
+			for(col = 0; col< lengthPuzzle; col++)
+			{
+				System.out.print(puzzle[row][col]);
+			}
+			System.out.println();
+			row++;
+		}
+	}
 	
 
 }

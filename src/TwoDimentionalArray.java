@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 public class TwoDimentionalArray 
@@ -20,6 +21,8 @@ public class TwoDimentionalArray
 			String inputFileName = "/Users/kaya/Documents/CSAssignments/CS146HW1/src/input.txt";//name of input file
 			File inputFile = new File(inputFileName);
 			String contained ="";
+			String[] keyWords;
+			int numOfKywords; 
 			int row = 0;
 			int column = 0;
 			char[][] puzzle; //= new char[4][4];//[row][column]
@@ -63,6 +66,7 @@ public class TwoDimentionalArray
 						for(int col = 0; col < lengthPuzzle; col++)
 						{
 							puzzle[row][col] = rowChars[col];//insert chars to puzzle column by column
+
 						}
 					}
 					//System.out.println(line);
@@ -74,13 +78,18 @@ public class TwoDimentionalArray
 				//System.out.println();
 				System.out.println();
 				System.out.println();
-				String[] keyWord = contained.split(" ");//to hold string type word 
-				for(int i = 0; i < keyWord.length; i++)
+				keyWords = contained.split(" ");//to hold string type word of the targeted words 
+				numOfKywords = keyWords.length;
+				for(int i = 0; i < keyWords.length; i++)
 				{
-					System.out.printf("splited[%d] = " + keyWord[i] + "\n",i);
+					System.out.printf("splited[%d] = " + keyWords[i] + "\n",i);
 				}
-				MutchingPuzzleBoard pd = new MutchingPuzzleBoard(puzzle, keyWord, lengthPuzzle);
+				
+				MutchingPuzzleBoard pd = new MutchingPuzzleBoard(puzzle, keyWords, lengthPuzzle);
 				System.out.println("-----Result from MuchingPuzzleBoard-----\n");
+				System.out.println("Puzzle Board");
+				pd.printPuzzle();
+				System.out.println();
 				System.out.println("-----searching top to down-----");
 				pd.mutchingTtoD();
 				System.out.println("-----searching down to top-----");
@@ -91,57 +100,12 @@ public class TwoDimentionalArray
 				pd.mutchingLtoR();
 				
 				
-				//Search!
-				/*
-				int kyloc = 0;
-				String candidate1;
-				String[] candicates = new String[4];
-				String result = "";
-				int kylength;
-				while(kyloc < keyWord.length)
-				{
-					String currentKey = keyWord[kyloc];
-					char fl = currentKey.charAt(0); //get the first letter of keyword
-					
-					for(int i = 0; i < lengthPuzzle; i++)
-					{
-						for(int j = 0; j < lengthPuzzle; j++)
-						{
-							int t = 0;//where t points to the next char
-							if(fl == puzzle[i][j])
-							{//First Letter matched up!
-								candidate1 = "";//init candidate1
-								kylength = currentKey.length();
-								for(int k = 0; k < kylength; k++)
-								{//walk from left to right
-									t = i+k;
-									if(t < 0 || t > keyWord.length)
-									{
-										
-										candidate1 += " ";
-									}
-									else
-									{
-										candidate1 += String.valueOf(puzzle[t][j]);
-										
-									}	
-								}//for-k
-								if(keyWord[kyloc].equalsIgnoreCase(candidate1))
-								{
-									result = "start at (" +  String.valueOf(i) + "," + String.valueOf(j) +")"
-											+"end at (" + String.valueOf(t) + "," + String.valueOf(j) + ")";
-									System.out.printf("[%s] = %s",candidate1,result);
-								}
-								else
-								{
-									
-								}
-							}//if
-						}//for-j
-					}// for-i
-					kyloc++;
-				}//while*/
+				
 			}//try
+			catch(IOException e)
+			{
+				e.getMessage();
+			}
 			catch(Exception ex)
 			{
 				ex.printStackTrace();
