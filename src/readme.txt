@@ -2,6 +2,8 @@ This is CS146 homework 1.
 This program solve letter puzzle where the puzzle is formed n by m D array.
 So far, it allows you to put unlimited numbers of targeted words in input.txt 
 
+Class TwoDimentionalArray.java, depending on MutchingPuzzleBouard.java, contains main();
+
 
 
 
