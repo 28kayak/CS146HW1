@@ -141,10 +141,10 @@ public class MutchingPuzzleBoard
 							t = i+k;
 							if(t < 0 || t >= lengthPuzzle)
 							{	
-								System.out.println("--------in if-statement----------");
+								//System.out.println("--------in if-statement----------");
 								
 								candidate1 += " ";
-								System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
+								//System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
 								
 							}
 							else
