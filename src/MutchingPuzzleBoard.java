@@ -3,8 +3,8 @@ public class MutchingPuzzleBoard
 {
 	private char[][] puzzle;//hold puzzle board 
 	private String[] keyWords;
-	int lengthPuzzle;
-	int numKey;
+	private int lengthPuzzle;
+	private int numKey;
 	MutchingPuzzleBoard(char[][] pBoard, String[] kyList, int plength)
 	{
 		puzzle = pBoard;
@@ -36,7 +36,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j-k;
-							if(t < 0 || t >= keyWords.length)
+							if(t < 0 || t >= lengthPuzzle)
 							{
 								
 								candidate1 += " ";
@@ -88,7 +88,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = j+k;
-							if(t < 0 || t >= keyWords.length)
+							if(t < 0 || t >= lengthPuzzle)
 							{
 								candidate1 += " ";
 							}
@@ -141,17 +141,17 @@ public class MutchingPuzzleBoard
 							t = i+k;
 							if(t < 0 || t >= lengthPuzzle)
 							{	
-								System.out.println("--------in if-statement----------");
+								//System.out.println("--------in if-statement----------");
 								
 								candidate1 += " ";
-								System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
+								//System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
 								
 							}
 							else
 							{
-								System.out.println("--------in else-statement----------");
-								System.out.println(candidate1);
-								System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
+								//System.out.println("--------in else-statement----------");
+								//System.out.println(candidate1);
+								//System.out.println("(t,j, lengthPuzzle) = " +"("+ t + "," + j + ","+lengthPuzzle + ")" );
 								candidate1 += String.valueOf(puzzle[t][j]);
 								
 							}	
@@ -198,7 +198,7 @@ public class MutchingPuzzleBoard
 						for(int k = 0; k < kylength; k++)
 						{//walk from left to right
 							t = i-k;
-							if(t < 0 || t > keyWords.length)
+							if(t < 0 || t >= lengthPuzzle)
 							{
 								
 								candidate1 += " ";
@@ -206,7 +206,6 @@ public class MutchingPuzzleBoard
 							else
 							{
 								candidate1 += String.valueOf(puzzle[t][j]);
-								
 							}	
 						}//for-k
 						if(keyWords[kyloc].equalsIgnoreCase(candidate1))
@@ -226,6 +225,24 @@ public class MutchingPuzzleBoard
 		}//while
 		
 	}//muchingDtoT()
+	public void backslashSearch()
+	{// search in diagonal way (0,0) to (n,n)
+		int i = 0;
+		int j = 0;
+		String candidate = "";
+		while(i < lengthPuzzle && j < lengthPuzzle)
+		{
+			candidate += puzzle[i][j];
+			System.out.println("candidate = " + candidate);
+			i++;
+			j++;
+		}
+		
+		
+	}
+	
+	
+	
 	public void printPuzzle()
 	{
 		int col;
@@ -240,6 +257,8 @@ public class MutchingPuzzleBoard
 			row++;
 		}
 	}
+	
+	
 	
 
 }
